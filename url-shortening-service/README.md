@@ -27,6 +27,16 @@ Before running the application, ensure you have the following installed:
 * Git
 * Docker & Docker Compose
 
+## How to run:
+I assume you have java, maven, git, and docker installed on your computer
+
+### Clone the repository
+First clone the repository on your computer
+```bash
+git clone https://github.com/adilkhanalimberdi/spring-practice/tree/main/url-shortening-service
+cd "spring-practice/url-shortening-service"
+```
+
 ### Run docker image for PostgreSQL DB:
 Open terminal or command-prompt and run this command:
 ```bash
