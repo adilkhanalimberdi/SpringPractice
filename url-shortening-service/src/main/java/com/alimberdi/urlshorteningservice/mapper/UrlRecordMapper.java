@@ -1,6 +1,7 @@
 package com.alimberdi.urlshorteningservice.mapper;
 
 import com.alimberdi.urlshorteningservice.dto.UrlRecordResponse;
+import com.alimberdi.urlshorteningservice.dto.UrlRecordStatistics;
 import com.alimberdi.urlshorteningservice.entity.UrlRecord;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,17 @@ public class UrlRecordMapper {
 				urlRecord.getShortCode(),
 				urlRecord.getCreatedAt(),
 				urlRecord.getUpdatedAt()
+		);
+	}
+
+	public static UrlRecordStatistics toStats(UrlRecord urlRecord) {
+		return new UrlRecordStatistics(
+				urlRecord.getId(),
+				urlRecord.getUrl(),
+				urlRecord.getShortCode(),
+				urlRecord.getCreatedAt(),
+				urlRecord.getUpdatedAt(),
+				urlRecord.getAccessCount()
 		);
 	}
 

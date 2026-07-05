@@ -25,7 +25,7 @@ public class UrlRecord {
 	@Column(nullable = false)
 	private String url;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String shortCode;
 
 	@CreatedDate
