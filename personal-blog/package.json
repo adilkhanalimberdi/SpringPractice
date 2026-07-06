@@ -1,0 +1,17 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "https://roadmap.sh/projects/personal-blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "tailwindcss": "^4.3.2"
+  }
+}

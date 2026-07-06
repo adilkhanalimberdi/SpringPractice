@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title>Publish a new Article</title>
+</head>
+<body class="m-0 p-10 text-gray-900 flex items-center justify-center">
+
+    <div class="flex flex-col gap-10 max-w-5xl w-full">
+        <p class="text-3xl text-black font-semibold">New Article</p>
+
+        <form th:action="@{/new}" th:object="${createRequest}" method="post" class="w-full flex flex-col gap-5 justify-start">
+            <div class="flex flex-col gap-1 w-full">
+                <label for="title">Article Title</label>
+                <input type="text"
+                       th:field="*{{title}}"
+                       id="title"
+                       placeholder="Enter article title..."
+                       class="px-5 py-3 rounded-md w-full border border-gray-400"
+                       required>
+            </div>
+
+            <div class="flex flex-col gap-1 w-full">
+                <label for="date">Publishing Date</label>
+                <input type="date"
+                       th:field="*{createdAt}"
+                       id="date"
+                       placeholder="yyy-MM-dd"
+                       class="px-5 py-3 rounded-md w-full border border-gray-400">
+            </div>
+
+            <div class="flex flex-col gap-1 w-full">
+                <label for="content">Content</label>
+                <textarea name="content"
+                          id="content"
+                          th:field="*{content}"
+                          cols="30" rows="10"
+                          class="px-5 py-3 rounded-md w-full border border-gray-400 resize-y min-h-37.5 max-h-125"
+                          placeholder="Enter content..."
+                          required></textarea>
+            </div>
+
+            <div class="w-full">
+                <button class="rounded-md bg-blue-600 text-white px-8 py-3 hover:bg-blue-700 active:bg-blue-800 shrink-0 no-wrap overflow-hidden transition-all duration-200">
+                    Publish</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title th:text="${'Article #' + article.id}"></title>
+</head>
+<body class="m-0 p-10 text-gray-900 flex items-center justify-center">
+
+    <div class="flex flex-col gap-10 max-w-5xl w-full">
+        <div class="flex flex-col gap-10">
+            <div class="flex flex-col gap-5">
+                <p class="text-3xl text-black font-semibold"
+                   th:text="${article.title}"></p>
+
+                <p class="text-gray-500 text-xl"
+                   th:text="${#temporals.format(article.createdAt, 'MMMM dd, yyyy')}"></p>
+            </div>
+
+            <div class="prose lg:prose-xl max-w-none"
+               th:utext="${htmlContent}"></div>
+        </div>
+    </div>
+
+</body>
+</html>
