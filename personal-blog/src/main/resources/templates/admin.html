@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/toast.js}"></script>
     <title>Admin Panel</title>
 </head>
 <body class="m-0 p-10 text-gray-900 flex items-center justify-center">
@@ -33,11 +34,12 @@
                         Edit
                     </a>
 
-                    <form th:action="@{/delete/{id}(id=*{id})}" method="post">
-                        <input type="hidden" name="redirectUrl" id="redirect-input">
+                    <form th:action="@{/delete/{id}(id=*{id})}"
+                          method="post"
+                          onsubmit="if (!confirm('Do you want to delete?')) return false; this.querySelector('.redirect-path').value = window.location.pathname;">
+                        <input type="hidden" name="redirectUrl" class="redirect-path">
 
                         <button type="submit"
-                                onclick="document.getElementById('redirect-input').value = window.location.pathname"
                                 class="px-3 py-1 text-red-600 hover:text-red-800 hover:bg-red-200 rounded-md transition-all duration-200 text-center">
                             Delete
                         </button>
@@ -46,6 +48,13 @@
             </div>
         </div>
     </div>
+
+    <div class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full p-4">
+        <div th:replace="~{fragments/toast::toast-success}"></div>
+        <div th:replace="~{fragments/toast::toast-danger}"></div>
+        <div th:replace="~{fragments/toast::toast-warning}"></div>
+    </div>
+
 
 </body>
 </html>

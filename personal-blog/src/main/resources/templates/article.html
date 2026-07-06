@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script th:src="@{/js/toast.js}"></script>
     <title th:text="${'Article #' + article.id}"></title>
 </head>
 <body class="m-0 p-10 text-gray-900 flex items-center justify-center">
@@ -10,8 +11,12 @@
     <div class="flex flex-col gap-10 max-w-5xl w-full">
         <div class="flex flex-col gap-10">
             <div class="flex flex-col gap-5">
-                <p class="text-3xl text-black font-semibold"
-                   th:text="${article.title}"></p>
+                <div class="flex flex-row justify-between items-center">
+                    <p class="text-3xl text-black font-semibold"
+                       th:text="${article.title}"></p>
+
+                    <div th:replace="~{fragments/buttons::go-back-to-home}"></div>
+                </div>
 
                 <p class="text-gray-500 text-xl"
                    th:text="${#temporals.format(article.createdAt, 'MMMM dd, yyyy')}"></p>
@@ -20,6 +25,12 @@
             <div class="prose lg:prose-xl max-w-none"
                th:utext="${htmlContent}"></div>
         </div>
+    </div>
+
+    <div class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full p-4">
+        <div th:replace="~{fragments/toast::toast-success}"></div>
+        <div th:replace="~{fragments/toast::toast-danger}"></div>
+        <div th:replace="~{fragments/toast::toast-warning}"></div>
     </div>
 
 </body>

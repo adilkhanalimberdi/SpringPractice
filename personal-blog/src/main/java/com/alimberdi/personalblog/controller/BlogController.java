@@ -3,8 +3,8 @@ package com.alimberdi.personalblog.controller;
 import com.alimberdi.personalblog.dto.ArticleCreateRequest;
 import com.alimberdi.personalblog.dto.ArticleUpdateRequest;
 import com.alimberdi.personalblog.entity.Article;
+import com.alimberdi.personalblog.notification.ToastNotificationService;
 import com.alimberdi.personalblog.service.ArticleService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
@@ -12,6 +12,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 
@@ -20,6 +21,8 @@ import java.time.LocalDate;
 public class BlogController {
 
 	private final ArticleService articleService;
+	private final ToastNotificationService toastNotificationService;
+
 	private final Parser markdownParser;
 	private final HtmlRenderer htmlRenderer;
 
@@ -66,8 +69,13 @@ public class BlogController {
 	}
 
 	@PostMapping("/new")
-	public String newArticle(@ModelAttribute ArticleCreateRequest request) {
+	public String newArticle(
+			@ModelAttribute ArticleCreateRequest request,
+			RedirectAttributes redirectAttributes
+	) {
 		Article article = articleService.create(request);
+		toastNotificationService.sendSuccess(redirectAttributes, "Article has been created successfully.");
+
 		return "redirect:/article/" + article.getId();
 	}
 
@@ -80,15 +88,24 @@ public class BlogController {
 	@PostMapping("/edit/{id}")
 	public String editArticle(
 			@PathVariable Long id,
-			@ModelAttribute ArticleUpdateRequest request
+			@ModelAttribute ArticleUpdateRequest request,
+			RedirectAttributes redirectAttributes
 	) {
 		articleService.update(id, request);
+		toastNotificationService.sendSuccess(redirectAttributes, "Article has been updated successfully.");
+
 		return "redirect:/article/" + id;
 	}
 
 	@PostMapping("/delete/{id}")
-	public String deleteArticle(@PathVariable Long id, @RequestParam(defaultValue = "/") String redirectUrl) {
+	public String deleteArticle(
+			@PathVariable Long id,
+			@RequestParam(defaultValue = "/") String redirectUrl,
+			RedirectAttributes redirectAttributes
+	) {
 		articleService.delete(id);
+		toastNotificationService.sendSuccess(redirectAttributes, "Article has been deleted succcessfully.");
+
 		return "redirect:" + redirectUrl;
 	}
 

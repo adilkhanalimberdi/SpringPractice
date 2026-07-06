@@ -1,2 +1,23 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@source "./src/main/resources/templates/**/*.html";
+
+@theme {
+    --color-success-soft: #f0fdf4;
+    --color-fg-success: #16a34a;
+
+    --color-danger-soft: #fef2f2;
+    --color-fg-danger: #dc2626;
+
+    --color-warning-soft: #fffbeb;
+    --color-fg-warning: #d97706;
+
+    --color-neutral-primary-soft: #f9fafb;
+    --color-neutral-secondary-medium: #e5e7eb;
+
+    --color-body: #4b5563;
+    --color-heading: #111827;
+    --color-default: #e5e7eb;
+
+    --radius-base: 0.5rem;
+}
