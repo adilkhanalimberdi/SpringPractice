@@ -9,3 +9,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/personal_blog
     username: postgres
     password: postgres
+
+app:
+  default-admin:
+    username: admin
+    password: admin123!

@@ -28,13 +28,13 @@ Before running the application, ensure you have the following installed:
 * Docker & Docker Compose
 
 ## How to run:
-I assume you have java, maven, git, and docker installed on your computer
+I assume you have java, maven, git, and docker already installed on your computer
 
 ### Clone the repository
 First clone the repository on your computer
 ```bash
-git clone https://github.com/adilkhanalimberdi/spring-practice/tree/main/url-shortening-service
-cd "spring-practice/url-shortening-service"
+git clone https://github.com/adilkhanalimberdi/spring-practice.git
+cd "spring-practice/personal-blog"
 ```
 
 ### Run docker image for PostgreSQL DB:
@@ -53,7 +53,7 @@ In the terminal run this command and wait until it says "Tomcat server started o
 You can check it with whatever you want, you can check GET requests in the browser.
 But it's recommended to use API testing tools like Postman, SoapUI, HTTPie, or any other online tools.
 
-Go to the browser and go to `http://localhost:8080/`, you should Whitelabel Error Page 
+Go to the browser and go to `http://localhost:8080/`, you should see Whitelabel Error Page 
 (which is a default fallback screen of Spring Boot app).
 This means your application started successfully.
 
