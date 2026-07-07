@@ -1,0 +1,212 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="length"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="length-from">Unit to convert from</label>
+        <select name="from"
+                id="length-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MM">Millimeter (mm)</option>
+            <option value="CM">Centimeter (cm)</option>
+            <option value="M" selected>Meter (m)</option>
+            <option value="KM">Kilometer (km)</option>
+            <option value="IN">Inch (in)</option>
+            <option value="FT">Foot (ft)</option>
+            <option value="YD">Yard (yd)</option>
+            <option value="MI">Mile (mi)</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="length-to">Unit to convert to</label>
+        <select name="to"
+                id="length-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MM">Millimeter (mm)</option>
+            <option value="CM">Centimeter (cm)</option>
+            <option value="M">Meter (m)</option>
+            <option value="KM" selected>Kilometer (km)</option>
+            <option value="IN">Inch (in)</option>
+            <option value="FT">Foot (ft)</option>
+            <option value="YD">Yard (yd)</option>
+            <option value="MI">Mile (mi)</option>
+        </select>
+    </div>
+</div>
+
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="weight"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="weight-from">Unit to convert from</label>
+        <select name="from"
+                id="weight-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MG">Milligram (mg)</option>
+            <option value="G">Gram (g)</option>
+            <option value="KG" selected>Kilogram (kg)</option>
+            <option value="OZ">Ounce (oz)</option>
+            <option value="LB">Pound (lb)</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="weight-to">Unit to convert to</label>
+        <select name="to"
+                id="weight-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MG">Milligram (mg)</option>
+            <option value="G" selected>Gram (g)</option>
+            <option value="KG">Kilogram (kg)</option>
+            <option value="OZ">Ounce (oz)</option>
+            <option value="LB">Pound (lb)</option>
+        </select>
+    </div>
+</div>
+
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="temp"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="temp-from">Unit to convert from</label>
+        <select name="from"
+                id="temp-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="C" selected>Celsius</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="temp-to">Unit to convert to</label>
+        <select name="to"
+                id="temp-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="C">Celsius</option>
+            <option value="F" selected>Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+    </div>
+</div>
+
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="area"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="area-from">Unit to convert from</label>
+        <select name="from"
+                id="area-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MM2">Square Millimeter (mm^2)</option>
+            <option value="CM2">Square Centimeter (cm^2)</option>
+            <option value="M2" selected>Square Meter (m^2)</option>
+            <option value="KM2">Square Kilometer (km^2)</option>
+            <option value="IN2">Square Inch (in^2)</option>
+            <option value="YD2">Square Yard (yd^2)</option>
+            <option value="FT2">Square Foot (ft^2)</option>
+            <option value="AC">Acre (ac)</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="area-to">Unit to convert to</label>
+        <select name="to"
+                id="area-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MM2">Square Millimeter (mm^2)</option>
+            <option value="CM2">Square Centimeter (cm^2)</option>
+            <option value="M2">Square Meter (m^2)</option>
+            <option value="KM2" selected>Square Kilometer (km^2)</option>
+            <option value="IN2">Square Inch (in^2)</option>
+            <option value="YD2">Square Yard (yd^2)</option>
+            <option value="FT2">Square Foot (ft^2)</option>
+            <option value="AC">Acre (ac)</option>
+        </select>
+    </div>
+</div>
+
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="volume"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="vol-from">Unit to convert from</label>
+        <select name="from"
+                id="vol-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="L">liter (l)</option>
+            <option value="ML">milliliter (ml)</option>
+            <option value="MM3">cubic millimeter (mm^3)</option>
+            <option value="CM3">cubic centimeter (cm^3)</option>
+            <option value="M3" selected>cubic meter (m^3)</option>
+            <option value="KM3">cubic kilometer (km^3)</option>
+            <option value="GAL">gallon (US)</option>
+            <option value="QT">quart (US)</option>
+            <option value="PT">pint (US)</option>
+            <option value="FLOZ">fluid ounce (fl oz)</option>
+            <option value="TBSP">tablespoon (tbsp)</option>
+            <option value="TSP">teaspoon (tsp)</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="vol-to">Unit to convert to</label>
+        <select name="to"
+                id="vol-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="L">liter (l)</option>
+            <option value="ML">milliliter (ml)</option>
+            <option value="MM3">cubic millimeter (mm^3)</option>
+            <option value="CM3">cubic centimeter (cm^3)</option>
+            <option value="M3">cubic meter (m^3)</option>
+            <option value="KM3" selected>cubic kilometer (km^3)</option>
+            <option value="GAL">gallon (US)</option>
+            <option value="QT">quart (US)</option>
+            <option value="PT">pint (US)</option>
+            <option value="FLOZ">fluid ounce (fl oz)</option>
+            <option value="TBSP">tablespoon (tbsp)</option>
+            <option value="TSP">teaspoon (tsp)</option>
+        </select>
+    </div>
+</div>
+
+
+<div xmlns:th="http://www.thymeleaf.org"
+     th:fragment="time"
+     class="w-full flex flex-col gap-5 md:flex-row">
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="time-from">Unit to convert from</label>
+        <select name="from"
+                id="time-from"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MS">millisecond (ms)</option>
+            <option value="S">second (sec)</option>
+            <option value="MIN">minute (min)</option>
+            <option value="H" selected>hour (h)</option>
+            <option value="D">day</option>
+            <option value="W">week</option>
+            <option value="M">month</option>
+            <option value="Y">year</option>
+        </select>
+    </div>
+
+    <div class="flex flex-col gap-1 flex-1">
+        <label for="time-to">Unit to convert to</label>
+        <select name="to"
+                id="time-to"
+                class="px-5 py-3 rounded-lg border border-slate-300">
+            <option value="MS">millisecond (ms)</option>
+            <option value="S">second (sec)</option>
+            <option value="MIN" selected>minute (min)</option>
+            <option value="H">hour (h)</option>
+            <option value="D">day</option>
+            <option value="W">week</option>
+            <option value="M">month</option>
+            <option value="Y">year</option>
+        </select>
+    </div>
+</div>

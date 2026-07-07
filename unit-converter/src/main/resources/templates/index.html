@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script th:src="@{/js/convert.js}"></script>
+    <script th:src="@{/js/converter-nav.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <title>Unit Converter</title>
+</head>
+<body class="p-10 m-0 flex items-center justify-center bg-gray-100">
+
+    <div class="max-w-5xl w-full flex flex-col gap-10">
+        <div class="w-full flex justify-between items-center">
+            <p class="text-3xl text-black text-semibold">Unit Converter</p>
+
+            <div id="menu-button" class="w-max aspect-square p-2 flex items-center justify-center md:hidden cursor-pointer rounded-lg border-2 border-transparent hover:border-slate-300">
+                <div class="flex flex-col gap-1">
+                    <div class="h-0.5 w-5 bg-slate-600 rounded-full"></div>
+                    <div class="h-0.5 w-5 bg-slate-600 rounded-full"></div>
+                    <div class="h-0.5 w-5 bg-slate-600 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="~{fragments/converter-nav::nav}"></div>
+
+        <div th:if="${param.type != null}" class="w-full">
+
+            <form th:action="@{/v1/api/convert}"
+                  th:with="active=${param.type[0]}"
+                  id="convert-form"
+                  class="w-full flex flex-col gap-10"
+                  method="post">
+                <div class="w-full flex flex-col gap-1">
+                    <label for="unit">Enter the value to convert</label>
+                    <input type="text"
+                           id="unit"
+                           name="value"
+                           class="px-5 py-3 rounded-lg border border-slate-300"
+                           placeholder="e.g. 100"
+                           required>
+                </div>
+
+                <div th:replace="~{fragments/unit-selections::${active}}"></div>
+
+                <div id="result-container"
+                     class="w-full p-10 rounded-2xl transition-all duration-300 ease-out overflow-hidden bg-slate-200 border-2 border-slate-300">
+                    <p id="result" class="text-xl whitespace-pre-wrap break-all"></p>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="h-25 w-full"></div>
+    </div>
+
+</body>
+</html>

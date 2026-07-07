@@ -1,0 +1,19 @@
+{
+  "name": "unit-converter",
+  "version": "1.0.0",
+  "description": "https://roadmap.sh/projects/unit-converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "once": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/main.css",
+    "watch": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/main.css --watch",
+    "minify": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/main.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "tailwindcss": "^4.3.2"
+  }
+}

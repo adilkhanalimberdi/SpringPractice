@@ -42,20 +42,20 @@ npm run watch
 *Note: npm run watch will keep running in the background to monitor style changes. 
 Please open a new terminal window/tab in the same folder for the next steps.*
 
-### Start the PostgreSQL Database:
+### Start the PostgreSQL Database
 In your new terminal window (and with Docker running), start the database container in the background:
 ```bash
 docker compose up -d
 ```
 
-### Run the application:
+### Run the application
 Run the Spring Boot application using the Maven Wrapper:
 ```bash
 ./mvnw spring-boot:run
 ```
 *Wait until the logs output Tomcat server started on port 8080.*
 
-### Check the application:
+### Check the application
 This is a Spring Boot MVC application with a built-in frontend, so you can open it directly in your browser:
 
 Go to the browser and go to `http://localhost:8080/`, you should see the home page.
