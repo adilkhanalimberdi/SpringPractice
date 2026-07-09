@@ -50,3 +50,20 @@ Run the Spring Boot application using the Maven Wrapper:
 This is a Spring Boot MVC application with a built-in frontend, so you can open it directly in your browser:
 
 Go to the browser and go to http://localhost:8080/, you should see the home page.
+
+## Work with the API
+Now you can test the API with these endpoints
+
+### Convert Units
+```http request
+POST /v1/api/convert
+{
+  "value": "12345.1234",
+  "from": "KG",
+  "to": "G"
+}
+```
+
+You should get a:
+- 200 OK (with the conversion result in the response body) if the conversion was successful
+- 400 BAD REQUEST if there was any validation error or unit parsing failure
