@@ -5,6 +5,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/library
     username: ${DB_USER}
     password: ${DB_PASS}
+  data:
+    redis:
+      host: localhost
+      port: 6379
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,4 +16,6 @@ spring:
 
 jwt:
   secret-key: ${JWT_KEY}
-  expiration-time-minutes: 15
+  expiration-time:
+    access-token-minutes: 5
+    refresh-token-days: 30

@@ -18,8 +18,8 @@ public class JwtService {
 	@Value("${jwt.secret-key}")
 	private String secretKey;
 
-	@Value("${jwt.expiration-time-minutes}")
-	private long expirationTimeMinutes;
+	@Value("${jwt.expiration-time.access-token-minutes}")
+	private long expirationMinutes;
 
 	public SecretKey getSigningKey() {
 		byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
@@ -28,18 +28,22 @@ public class JwtService {
 
 	public String generateToken(String username) {
 		Instant now = Instant.now();
-		Instant expirationDate = now.plus(expirationTimeMinutes, ChronoUnit.MINUTES);
+		Instant expiration = now.plus(expirationMinutes, ChronoUnit.MINUTES);
 
 		return Jwts.builder()
 				.subject(username)
 				.issuedAt(Date.from(now))
-				.expiration(Date.from(expirationDate))
+				.expiration(Date.from(expiration))
 				.signWith(getSigningKey())
 				.compact();
 	}
 
 	public String extractUsername(String token) {
 		return extractAllClaims(token).getSubject();
+	}
+
+	public Instant extractIssuedAt(String token) {
+		return extractAllClaims(token).getIssuedAt().toInstant();
 	}
 
 	public boolean isTokenValid(String token, String username) {

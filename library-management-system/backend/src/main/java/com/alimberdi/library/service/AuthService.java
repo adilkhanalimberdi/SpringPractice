@@ -3,49 +3,57 @@ package com.alimberdi.library.service;
 import com.alimberdi.library.dto.AuthResponse;
 import com.alimberdi.library.dto.LoginRequest;
 import com.alimberdi.library.dto.RegisterRequest;
+import com.alimberdi.library.entity.CustomUserDetails;
 import com.alimberdi.library.entity.User;
-import com.alimberdi.library.enums.UserRole;
 import com.alimberdi.library.exception.UserAlreadyExistsException;
-import com.alimberdi.library.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.Instant;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
 
-	private final AuthenticationManager authenticationManager;
-	private final UserRepository userRepository;
-	private final PasswordEncoder passwordEncoder;
 	private final JwtService jwtService;
+	private final UserService userService;
+	private final RefreshTokenService refreshTokenService;
+	private final AuthenticationManager authenticationManager;
+	private final RedisBlacklistService blacklistService;
 
+	@Transactional(rollbackFor = Exception.class)
 	public AuthResponse login(LoginRequest request) {
 		authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password())
 		);
 
-		String token = jwtService.generateToken(request.username());
-		return new AuthResponse(token);
+		User user = userService.getByUsername(request.username());
+		blacklistService.banUserWithTimestamp(user.getUsername(), Instant.now());
+
+		String accessToken = jwtService.generateToken(request.username());
+		String refreshToken = refreshTokenService.create(user).getToken();
+		return new AuthResponse(accessToken, refreshToken);
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	public AuthResponse register(RegisterRequest request) {
-		if (userRepository.existsByUsername(request.username())) {
+		if (userService.existsByUsername(request.username())) {
 			throw new UserAlreadyExistsException("User with username " + request.username() + " already exists");
 		}
 
-		User user = User.builder()
-				.username(request.username())
-				.password(passwordEncoder.encode(request.password()))
-				.role(UserRole.USER)
-				.build();
+		User user = userService.create(request);
+		String accessToken = jwtService.generateToken(request.username());
+		String refreshToken = refreshTokenService.create(user).getToken();
+		return new AuthResponse(accessToken, refreshToken);
+	}
 
-		userRepository.save(user);
-
-		String token = jwtService.generateToken(request.username());
-		return new AuthResponse(token);
+	@Transactional(rollbackFor = Exception.class)
+	public void logout(CustomUserDetails userDetails) {
+		User user = userService.getByUsername(userDetails.getUsername());
+		refreshTokenService.deleteByUser(user);
 	}
 
 }
