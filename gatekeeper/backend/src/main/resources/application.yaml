@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gatekeeper
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gatekeeper
+    username: ${DB_USER}
+    password: ${DB_PASS}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - profile
+              - email
+
+security:
+  jwt:
+    secret-key: ${JWT_SECRET_KEY}
+    expiration-minutes: 900000
