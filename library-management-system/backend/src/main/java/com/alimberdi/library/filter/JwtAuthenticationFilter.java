@@ -3,6 +3,7 @@ package com.alimberdi.library.filter;
 import com.alimberdi.library.service.CustomUserDetailsService;
 import com.alimberdi.library.service.JwtService;
 import com.alimberdi.library.service.RedisBlacklistService;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,7 +48,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		}
 
 		token = authHeader.substring(7);
-		username = jwtService.extractUsername(token);
+		try {
+			username = jwtService.extractUsername(token);
+		} catch (ExpiredJwtException ex) {
+			log.warn("JWT token is expired: {}", ex.getMessage());
+			log.warn(String.valueOf(request.getRequestURL()));
+
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			response.setContentType("application/json");
+			response.getWriter().write("{\"statusCode\": 401, \"message\": \"JWT expired\", \"errors\": null}");
+			response.getWriter().flush();
+			return;
+		}
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 			UserDetails userDetails = userDetailsService.loadUserByUsername(username);

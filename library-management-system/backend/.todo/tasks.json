@@ -1,0 +1,28 @@
+[
+  {
+    "id": "TASK_1",
+    "priority": "MEDIUM",
+    "tags": [
+      "Data",
+      "Learn",
+      "Security"
+    ],
+    "title": "Complete JWT authZ and authN",
+    "description": "I need to fix and complete JWT token refreshing, blacklisting\nAnd complete frontend so it will work with the backend stable\nAlso need to learn JWT versioning, and Caching with Redis and Proxy layer from the spring-boot-starter-cache",
+    "status": "TODO",
+    "date": {
+      "date": {
+        "year": 2026,
+        "month": 7,
+        "day": 11
+      },
+      "time": {
+        "hour": 12,
+        "minute": 40,
+        "second": 53,
+        "nano": 130530500
+      }
+    },
+    "isImported": false
+  }
+]

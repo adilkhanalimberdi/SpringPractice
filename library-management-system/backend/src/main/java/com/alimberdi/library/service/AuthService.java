@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +32,12 @@ public class AuthService {
 		);
 
 		User user = userService.getByUsername(request.username());
-		blacklistService.banUserWithTimestamp(user.getUsername(), Instant.now());
 
 		String accessToken = jwtService.generateToken(request.username());
 		String refreshToken = refreshTokenService.create(user).getToken();
+
+		blacklistService.banUserWithTimestamp(user.getUsername(), Instant.now().minusSeconds(1));
+
 		return new AuthResponse(accessToken, refreshToken);
 	}
 

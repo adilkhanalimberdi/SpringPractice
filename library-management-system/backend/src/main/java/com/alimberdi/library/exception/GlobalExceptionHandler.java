@@ -1,5 +1,6 @@
 package com.alimberdi.library.exception;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.alimberdi.library.dto.ErrorResponse;
@@ -13,6 +14,18 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+	@ExceptionHandler(ExpiredJwtException.class)
+	public ResponseEntity<ErrorResponse> handleExpiredJwtException() {
+		ErrorResponse response = new ErrorResponse(
+				HttpStatus.UNAUTHORIZED.value(),
+				"JWT expired"
+		);
+
+		return ResponseEntity
+				.status(HttpStatus.UNAUTHORIZED)
+				.body(response);
+	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
